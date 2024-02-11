@@ -35,9 +35,12 @@ ln -s /config/usb_gadget/g1/functions/ffs.adb /config/usb_gadget/g1/configs/c.1/
 #Start adbd application
 mkdir -p /dev/usb-ffs/adb
 mount -o uid=2000,gid=2000 -t functionfs adb /dev/usb-ffs/adb
-adbd &
 
 #Enable the Gadget
 #Replace "ci_hdrc.0" with your platform UDC driver as found in /sys/class/udc/
-echo 'ci_hdrc.0' > /config/usb_gadget/g1/UDC
-#echo "ci_hdrc.0" > /config/usb_gadget/g1/UDC
+#echo 'ci_hdrc.0' > /config/usb_gadget/g1/UDC
+
+# qcom usually have usb at memaddr 0xa600000
+echo 'a600000.usb' > /config/usb_gadget/g1/UDC
+
+adbd  --device_banner=device &
