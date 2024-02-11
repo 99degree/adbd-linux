@@ -84,7 +84,7 @@ CFLAGS= $(OPT_CFLAGS) $(LOCAL_CFLAGS) $(LOCAL_INCLUDES)
 all: $(LOCAL_MODULE)
 
 $(LOCAL_MODULE): $(OBJS)
-	${CXX} -fPIC $(CXXFLAGS) $^ -L. -L ../libcutils/*.o ../base/*.o  -lpthread -lresolv -lutil -o $@
+	${CXX} -fPIC $(CXXFLAGS) $^ -L. -L ../libcutils/*.o ../base/*.o  -lpthread -lresolv -lutil -static -o $@
 	#g++ -fPIC $(CXXFLAGS) $^ -L ../libcutils/*.o ../base/*.o ../libcrypto_utils/*.o -lpthread -lresolv -lcrypto -lssl -lutil -o $@
 
 clean:
