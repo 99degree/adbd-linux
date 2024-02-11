@@ -6,7 +6,6 @@ SUBDIRS= \
 	adb \
 	adb/daemon \
 	base \
-	libcrypto_utils \
 	libcutils
 
 all: adb/adbd adbd.service
@@ -34,7 +33,7 @@ base/libbase.a: subdirs $(top_srcdir)/base/*.cpp
 libcrypto_utils/libcrypto_utils.a: subdirs libcrypto_utils/android_pubkey.c
 	$(MAKE) -C libcrypto_utils
 
-adb/adbd adb/xdg-adbd: subdirs libcutils/libcutils.a base/libbase.a libcrypto_utils/libcrypto_utils.a $(top_srcdir)/adb/*.cpp adb/xdg-adbd.c
+adb/adbd adb/xdg-adbd: subdirs libcutils/libcutils.a base/libbase.a $(top_srcdir)/adb/*.cpp
 	$(MAKE) -C adb
 
 clean: subdirs

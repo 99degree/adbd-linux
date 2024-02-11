@@ -31,8 +31,11 @@ LIBADB_linux_SRC_FILES := \
 LOCAL_SRC_FILES := \
     $(LIBADB_SRC_FILES) \
     $(LIBADB_linux_SRC_FILES) \
-    adb_auth_client.cpp \
     fdevent.cpp
+
+LOCAL_SRC_FILES += \
+    adb_auth_client_dummy.cpp
+#    adb_auth_client.cpp \
 
 LOCAL_SRC_FILES += \
     services.cpp \
@@ -78,16 +81,12 @@ CFLAGS= $(OPT_CFLAGS) $(LOCAL_CFLAGS) $(LOCAL_INCLUDES)
 	${CC} -g -c -fPIC $(CFLAGS) $(LFLAGS) $< -o $@
 	#gcc -g -c -fPIC $(CFLAGS) $(LFLAGS) $< -o $@
 
-all: $(LOCAL_MODULE) xdg-adbd
+all: $(LOCAL_MODULE)
 
 $(LOCAL_MODULE): $(OBJS)
-	${CXX} -fPIC $(CXXFLAGS) $^ -L. -L ../libcutils/*.o ../base/*.o ../libcrypto_utils/*.o -lpthread -lresolv -lcrypto -lssl -lutil -o $@
+	${CXX} -fPIC $(CXXFLAGS) $^ -L. -L ../libcutils/*.o ../base/*.o  -lpthread -lresolv -lutil -o $@
 	#g++ -fPIC $(CXXFLAGS) $^ -L ../libcutils/*.o ../base/*.o ../libcrypto_utils/*.o -lpthread -lresolv -lcrypto -lssl -lutil -o $@
 
-xdg-adbd: xdg-adbd.c
-	${CC} -o $@ $< $(CFLAGS) $(LFLAGS) `pkg-config --libs --cflags glib-2.0`
-	#gcc -o $@ $< $(CFLAGS) $(LFLAGS) `pkg-config --libs --cflags glib-2.0`
-
 clean:
-	rm -f $(LOCAL_MODULE) xdg-adbd *.o daemon/*.o
+	rm -f $(LOCAL_MODULE)  *.o daemon/*.o
 
