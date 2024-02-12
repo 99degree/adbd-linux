@@ -30,7 +30,7 @@ echo 120 > configs/c.1/MaxPower
 #And link it to the gadget configuration
 #stop adbd
 mkdir -p functions/ffs.adb
-ln -s /config/usb_gadget/g1/functions/ffs.adb /config/usb_gadget/g1/configs/c.1/ffs.adb
+ln -s /config/usb_gadget/g1/functions/ffs.adb /config/usb_gadget/g1/configs/c.1/
 
 #Start adbd application
 mkdir -p /dev/usb-ffs/adb
