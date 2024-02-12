@@ -17,8 +17,8 @@ mkdir strings/0x409
 echo 0123459876 > strings/0x409/serialnumber
 
 #Update following if you want to
-echo "Test" > strings/0x409/manufacturer
-echo "Test" > strings/0x409/product
+echo "PostmarketOS" > strings/0x409/manufacturer
+echo "PostmarketOS" > strings/0x409/product
 
 #Create gadget configuration
 mkdir configs/c.1
@@ -41,6 +41,6 @@ mount -o uid=2000,gid=2000 -t functionfs adb /dev/usb-ffs/adb
 #echo 'ci_hdrc.0' > /config/usb_gadget/g1/UDC
 
 # qcom usually have usb at memaddr 0xa600000
-echo "$(ls /sys/class/udc | grep -v dummy )' > /config/usb_gadget/g1/UDC
+echo "$(ls /sys/class/udc | grep usb )' > /config/usb_gadget/g1/UDC
 
 exec adbd  --device_banner=device &
