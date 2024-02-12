@@ -1,8 +1,8 @@
 #!/bin/bash
 #https://wiki.linaro.org/LMG/Kernel/AndroidConfigFSGadgets#ADB_gadget_configuration
-modprobe g_ether
-rmmod g_ether
-sleep 1
+#modprobe g_ether
+#rmmod g_ether
+#sleep 1
 #Mount ConfigFS and create Gadget
 mount -t configfs none /config
 mkdir -p /config/usb_gadget/g1
@@ -41,6 +41,6 @@ mount -o uid=2000,gid=2000 -t functionfs adb /dev/usb-ffs/adb
 #echo 'ci_hdrc.0' > /config/usb_gadget/g1/UDC
 
 # qcom usually have usb at memaddr 0xa600000
-echo 'a600000.usb' > /config/usb_gadget/g1/UDC
+echo "$(ls /sys/class/udc | grep -v dummy )' > /config/usb_gadget/g1/UDC
 
-adbd  --device_banner=device &
+exec adbd  --device_banner=device &
