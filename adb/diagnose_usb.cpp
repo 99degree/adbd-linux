@@ -29,6 +29,10 @@
 
 static const char kPermissionsHelpUrl[] = "http://developer.android.com/tools/device.html";
 
+__attribute__((weak)) int group_member(gid_t gid) {
+	return 0;
+}
+
 // Returns a message describing any potential problems we find with udev, or nullptr if we can't
 // find plugdev information (i.e. udev is not installed).
 static const char* GetUdevProblem() {

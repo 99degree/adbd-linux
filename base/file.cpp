@@ -29,6 +29,12 @@
 #define LOG_TAG "base.file"
 #include "cutils/log.h"
 #include "utils/Compat.h"
+#include <sys/stat.h>
+
+/* speciaally for musl c */
+#ifndef DEFFILEMODE
+# define DEFFILEMODE (S_IRUSR|S_IWUSR|S_IRGRP|S_IWGRP|S_IROTH|S_IWOTH)/* 0666*/
+#endif
 
 namespace android {
 namespace base {

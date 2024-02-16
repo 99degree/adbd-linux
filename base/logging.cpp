@@ -93,11 +93,11 @@ namespace {
 using std::mutex;
 using std::lock_guard;
 
-#if defined(__GLIBC__)
-const char* getprogname() {
+//#if defined(__GLIBC__)
+const char* __attribute__((weak)) getprogname() {
   return program_invocation_short_name;
 }
-#endif
+//#endif
 
 #else
 const char* getprogname() {

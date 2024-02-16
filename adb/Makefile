@@ -70,7 +70,7 @@ LOCAL_STATIC_LIBRARIES := libcutils libc
 ################################
 
 OBJS = $(LOCAL_SRC_FILES:.cpp=.o) $(LOCAL_SRC_C_FILES:.c=.o)
-CXXFLAGS = $(OPT_CXXFLAGS) -std=c++14 $(LOCAL_CFLAGS) $(LOCAL_INCLUDES)
+CXXFLAGS = $(OPT_CXXFLAGS) -std=gnu++14 $(LOCAL_CFLAGS) $(LOCAL_INCLUDES)
 CFLAGS= $(OPT_CFLAGS) $(LOCAL_CFLAGS) $(LOCAL_INCLUDES)
 
 %.o: %.cpp
